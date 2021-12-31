@@ -38,6 +38,8 @@ Create a theater:
 ```
 POST /api/theater
 
+Body:
+
 {
     "name": "Berlin Opera Hall",
     "seats": [
@@ -109,12 +111,55 @@ POST /api/theater
 Get one theater with Id:
 
 ```
-GET /api/theater/<theater Id>
+GET /api/theater/<theaterId>
+
+Url Param:
+  theaterId: int
 ```
 
 Get all Theaters with Pagination: 
 
 ```
 GET /api/theater?page=1&per_page=10
+
+Query Strings: 
+  page
+  per_page
 ```
 
+Allocate theater seats with users:
+
+```
+POSt /api/theater/allocate
+
+Body:
+
+{
+    "theater_id": 1,
+    "groups": [
+        {
+            "section_id": 1,
+            "group_rank": 1,
+            "user_ids": [4, 2, 6]
+        },
+        {
+            "group_rank": 2,
+            "user_ids": [11, 12, 66]
+        },
+        
+    ]
+}
+
+"section_id" is not required, if you provide "section_id" in a group means someone from that group has a preference to be in a specific section.
+
+```
+
+Get seat number by user Id:
+
+```
+GET /api/theater/seat/user/<userId>
+
+Url Param:
+  userId: int
+
+```
