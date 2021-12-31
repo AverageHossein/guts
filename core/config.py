@@ -1,7 +1,7 @@
 import os
 
 class Base(object):
-    DEBUG = True
+    DEBUG = False
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     DB_USER = os.getenv('DATABASE_USERNAME')
     DB_PASS = os.getenv('DATABASE_PASSWORD')
