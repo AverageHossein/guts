@@ -150,9 +150,9 @@ Body:
     ]
 }
 
-"section_id" is not required, if you provide "section_id" in a group means someone from that group has a preference to be in a specific section.
-
 ```
+P.S: in the API above "section_id" is not required, if you provide "section_id" in a group means someone from that group has a preference to be in a specific section.
+
 
 Get seat number by user Id:
 
