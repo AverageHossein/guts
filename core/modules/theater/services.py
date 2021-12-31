@@ -25,7 +25,6 @@ class AllocationService:
             user_ids.extend(group["user_ids"])
             seat_ids.extend(results)
 
-        
         seats_users_mapping = []
         for index, value in enumerate(seat_ids):
             seats_users_mapping.append({"id": value, "reserved_by": user_ids[index]})

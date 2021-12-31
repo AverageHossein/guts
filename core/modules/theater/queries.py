@@ -7,17 +7,21 @@ def create_allocation_query(group_size: int, theater_id: int, section_id: int=No
                 a.rank < b.rank \
                 AND b.rank < a.rank +:group_size \
                 AND b.reserved_by IS NULL \
+                AND a.theater_id = b.theater_id \
                 AND a.row_number = b.row_number \
                 AND a.section_id = b.section_id \
                 WHERE a.reserved_by IS NULL \
                 AND a.theater_id = :theater_id "
 
     if section_id:
-        query += f" AND a.section_id = {section_id} "
-        
-    query += "GROUP BY a.rank \
-                HAVING COUNT(b.rank)+1 = :group_size \
-                LIMIT 1) LIMIT :group_size"
+        query += f" AND a.section_id = {section_id} \
+                GROUP BY a.rank \
+                HAVING COUNT(b.rank)+1 = :group_size LIMIT 1) \
+                AND section_id = {section_id} AND theater_id = :theater_id ORDER BY rank LIMIT :group_size"
+    else:
+        query += "GROUP BY a.rank \
+                HAVING COUNT(b.rank)+1 = :group_size LIMIT 1) \
+                AND theater_id = :theater_id ORDER BY rank LIMIT :group_size"
 
     sql = db.text(query).bindparams(group_size=group_size, theater_id=theater_id)
     results = db.session.execute(sql).fetchall()
