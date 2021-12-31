@@ -1,0 +1,6 @@
+[
+  {
+    "name": "backend",
+    "imageUri": "<ECR URL>.amazonaws.com/backend:latest"
+  }
+]
