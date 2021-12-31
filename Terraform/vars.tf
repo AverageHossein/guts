@@ -1,5 +1,5 @@
 variable "AWS_REGION" {
-  type    = string
+  type = string
 }
 variable "AWS_PIPELINE_NAME" { type = string }
 variable "REPOSITORY_ID" { type = string }
