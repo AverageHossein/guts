@@ -18,7 +18,7 @@ parser.add_argument("per_page", type=int, required=False)
 @theater.route('seat/user/<int:id>')
 class GetUserSeat(Resource):
     @theater.errorhandler
-    @responds(schema=SeatSchema())
+    @responds(schema=SeatSchema(only=["seat_number"]))
     def get(self, id: int) -> Theater:
         """Gets one seat by user Id"""
 
