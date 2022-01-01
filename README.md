@@ -3,7 +3,7 @@
 I have dockerized the project, you can simply run the project by the command below: 
 
 ```
-docker-compose up -d
+docker-compose up --build -d
 ```
 
 P.S: Make sure that you don't have any other apps listening on ports <code>5432</code> and <code>8000</code>
